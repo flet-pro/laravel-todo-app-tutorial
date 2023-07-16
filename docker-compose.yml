@@ -1,0 +1,54 @@
+version: '3.8'
+
+services:
+    pma:
+        image: phpmyadmin/phpmyadmin
+        environment:
+            - PMA_HOSTS=database
+            - PMA_USER=${DB_USERNAME}
+            - PMA_PASSWORD=${DB_PASSWORD}
+        ports:
+            - "8001:80"
+        volumes:
+            - ./docker/pma:/sessions
+        networks:
+            - todo-net
+    database:
+        platform: linux/x86_64
+        image: mysql:5.7.37
+        container_name: todo-db
+        restart: unless-stopped
+        environment:
+            MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+            MYSQL_DATABASE: ${DB_DATABASE}
+            MYSQL_USER: ${DB_USERNAME}
+            MYSQL_PASSWORD: ${DB_PASSWORD}
+        volumes:
+            - ./docker/db/data:/var/lib/mysql
+        ports:
+            - '${DB_PORT}:${DB_PORT}'
+        expose:
+            - '3306'
+        networks:
+            - todo-net
+    php-apache:
+        container_name: todo-php-apache
+        #Dockerfileが./docker/phpにある
+        build:
+            context: ./docker/php
+        #server側の80番ポートをPCの8000番ポートに接続
+        ports:
+            - '8000:80'
+        volumes:
+            - ./:/var/www/laravel_docker
+            - ./docker/apache/default.conf:/etc/apache2/sites-enabled/000-default.conf
+        #todo-dbを先に起動
+        depends_on:
+            - database
+        networks:
+            - todo-net
+
+#bridgeネットワークを作成
+networks:
+    todo-net:
+        driver: bridge
