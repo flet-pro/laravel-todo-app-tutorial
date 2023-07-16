@@ -26,7 +26,7 @@ docker compose up
 
 ### 初期設定など
 ```shell
-docker exec -it portal-php-apache /bin/bash
+docker exec -it todo-php-apache /bin/bash
 ```
 でコンテナ内に入り以下を実行。
 ```shell
