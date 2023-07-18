@@ -1,0 +1,26 @@
+html, body {
+    height: 100%;
+}
+
+.form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 20%;
+}
+
+.form-width {
+    width: 100%; /* 好みに応じて適切な幅を設定してください */
+}
+
+.form-box {
+    width: 80%; /* 好みに応じて適切な幅を設定してください */
+}
+
+.input-control {
+    width: 92%;
+}
+
+.btn-control {
+    width: 8%;
+}
