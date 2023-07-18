@@ -11,8 +11,18 @@ dockerをインストールしてもらうだけで十分なはず
 
 ### .envファイル記入
 [.env.example](./.env.example)をコピーして.envファイルを作成  
-必要情報を記入する
+必要情報を記入する\
+一番下に
+- YOUR_NAME=template
 
+があるので、自分の名前を入れる。（ニックネームでいい）\
+\
+現在プロジェクト名がtodo-app-templateなのでこれを変更したい場合は
+
+```shell
+mv ../todo-app-template ../todo-app-flet_pro
+```
+\
 Docker上での実行なので気にする必要はないが、気になる人は変えても良い項目
 - DB_DATABASE
 - DB_USERNAME
@@ -26,7 +36,7 @@ docker compose up
 
 ### 初期設定など
 ```shell
-docker exec -it todo-php-apache /bin/bash
+source .env && docker exec -it todo-$YOUR_NAME-php-apache /bin/bash
 ```
 でコンテナ内に入り以下を実行。
 ```shell
@@ -52,7 +62,7 @@ docker compose up
 ### artisan系コマンド実行
 DB関係の操作をするときは
 ```shell
-docker exec -it todo-php-apache /bin/bash
+source .env && docker exec -it todo-$YOUR_NAME-php-apache /bin/bash
 ```
 でコンテナに入ってからartisan系コマンドを実行
 ```shell

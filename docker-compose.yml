@@ -16,7 +16,7 @@ services:
     database:
         platform: linux/x86_64
         image: mysql:5.7.37
-        container_name: todo-template-db
+        container_name: todo-${YOUR_NAME}-db
         restart: unless-stopped
         environment:
             MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
@@ -32,7 +32,7 @@ services:
         networks:
             - todo-net
     php-apache:
-        container_name: todo-template-php-apache
+        container_name: todo-${YOUR_NAME}-php-apache
         #Dockerfileが./docker/phpにある
         build:
             context: ./docker/php
