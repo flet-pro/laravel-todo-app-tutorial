@@ -20,7 +20,8 @@ dockerをインストールしてもらうだけで十分なはず
 現在プロジェクト名がtodo-app-templateなのでこれを変更したい場合は
 
 ```shell
-mv ../todo-app-template ../todo-app-flet_pro
+cd ~/(git cloneしたディレクトリー)
+mv todo-app-template todo-app-flet_pro
 ```
 \
 Docker上での実行なので気にする必要はないが、気になる人は変えても良い項目
