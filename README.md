@@ -42,6 +42,7 @@ source .env && docker exec -it todo-$YOUR_NAME-php-apache /bin/bash
 ```shell
 export COMPOSER_PROCESS_TIMEOUT=1200
 composer install
+source .env
 php artisan key:generate
 php artisan migrate
 php artisan db:seed
