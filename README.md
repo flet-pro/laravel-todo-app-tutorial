@@ -67,7 +67,7 @@ source .env && docker exec -it todo-$YOUR_NAME-php-apache /bin/bash
 ```
 でコンテナに入ってからartisan系コマンドを実行
 ```shell
-php artisan migrate
+source .env && php artisan migrate
 ```
 
 それ以外のときはそのまま実行しても、コンテナに入っていても可
